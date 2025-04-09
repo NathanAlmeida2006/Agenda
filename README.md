@@ -1,59 +1,60 @@
-# AgendaFrontend
+# 📅 Agenda Frontend (Angular + JSON Server)
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.8.
+Este projeto é uma aplicação frontend desenvolvida em Angular, utilizando o `json-server` como backend simulado. Toda a aplicação está dockerizada para facilitar a execução em qualquer ambiente.
 
-## Development server
+Repositório: [https://github.com/NathanAlmeida2006/Agenda](https://github.com/NathanAlmeida2006/Agenda)
 
-To start a local development server, run:
+---
 
-```bash
-ng serve
-```
+## ✅ Pré-requisitos
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- [Docker](https://www.docker.com/)
+- [Docker Compose](https://docs.docker.com/compose/)
 
-## Code scaffolding
+---
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## 🚀 Como executar o projeto
 
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### 1. Clone o repositório
 
 ```bash
-ng generate --help
+git clone https://github.com/NathanAlmeida2006/Agenda.git
+cd Agenda
 ```
 
-## Building
-
-To build the project run:
+### 2. Construa e inicie os containers
 
 ```bash
-ng build
+docker compose up -d --build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+> Isso irá:
+> - Construir a imagem do frontend Angular
+> - Subir dois containers:
+>   - `agenda-frontend`: Servindo a aplicação Angular na porta `4200`
+>   - `json-server`: Servindo a API fake na porta `3000`
 
-## Running unit tests
+---
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+## 🌐 Acesso à aplicação
+
+- Interface Angular: [http://localhost:4200](http://localhost:4200)
+- API JSON Server: [http://localhost:3000](http://localhost:3000)
+
+---
+
+## 📁 Estrutura dos arquivos principais
+
+- `Dockerfile`: Define o build do projeto Angular
+- `docker-compose.yml`: Orquestra os containers da aplicação
+- `db.json`: Arquivo com os dados simulados da API
+
+---
+
+## 🧹 Encerrando a aplicação
+
+Para parar e remover os containers:
 
 ```bash
-ng test
+docker compose down
 ```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.

@@ -1,26 +1,17 @@
-version: '3.8'
 services:
   frontend:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: agenda-frontend:1.0
+    container_name: agenda-frontend
     ports:
-      - "4200:8080"
+      - "4200:80"
     depends_on:
-      - json-server
-    networks:
-      - app-network
+      - jsonserver
 
-  json-server:
+  jsonserver:
     image: clue/json-server
-    volumes:
-      - ./db.json:/data/db.json
+    container_name: json-server
     ports:
       - "3000:3000"
-    command: "--watch /data/db.json --host 0.0.0.0"
-    networks:
-      - app-network
-
-networks:
-  app-network:
-    driver: bridge
+    volumes:
+      - ./db.json:/data/db.json
+    command: -p 3000 /data/db.json

@@ -1,15 +1,20 @@
-#Build da aplicação 
-FROM node:20-alpine AS build
-WORKDIR /app
-COPY package.json package-lock.json ./
-RUN npm install
-COPY . .
-RUN npm run build -- --configuration production
+# build da aplicação
+FROM node:18-alpine as build
 
-# Servir a aplicação com um servidor 
-FROM node:20-alpine
 WORKDIR /app
-RUN npm install -g http-server
-COPY --from=build /app/dist/agenda-frontend/browser/ .
-EXPOSE 8080
-CMD ["http-server", ".", "-p", "8080"]
+
+COPY package*.json ./
+RUN npm install
+
+COPY . .
+
+RUN npm run build --configuration production
+
+# Servir aplicação com Nginx
+FROM nginx:stable-alpine
+
+COPY --from=build /app/dist/agenda-frontend /usr/share/nginx/html
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
