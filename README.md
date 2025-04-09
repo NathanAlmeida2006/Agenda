@@ -2,8 +2,6 @@
 
 Este projeto é uma aplicação frontend desenvolvida em Angular, utilizando o `json-server` como backend simulado. Toda a aplicação está dockerizada para facilitar a execução em qualquer ambiente.
 
-Repositório: [https://github.com/NathanAlmeida2006/Agenda](https://github.com/NathanAlmeida2006/Agenda)
-
 ---
 
 ## ✅ Pré-requisitos
