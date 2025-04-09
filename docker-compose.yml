@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "4200:8080"
+    depends_on:
+      - json-server
+    networks:
+      - app-network
+
+  json-server:
+    image: clue/json-server
+    volumes:
+      - ./db.json:/data/db.json
+    ports:
+      - "3000:3000"
+    command: "--watch /data/db.json --host 0.0.0.0"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
